@@ -66,6 +66,7 @@ export WITH_UPSTREAM = "1"
 export WITH_CMDRV = "1"
 export KERNEL_SOURCE_DIR = "${ICP_ROOT}/quickassist/qat/"
 export ICP_NO_CLEAN = "1"
+export ICP_QDM_IOMMU = "1"
 
 inherit module
 inherit update-rc.d
