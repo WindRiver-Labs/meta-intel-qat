@@ -48,16 +48,16 @@ index cc8cf2f..b8ec93c 100644
 -ADDITIONAL_KERNEL_LIBS= common/utils/$(ICP_BUILD_OUTPUT_DIR)/utils.a \
 -			common/ctrl/$(ICP_BUILD_OUTPUT_DIR)/init.a \
 -                        common/compression/$(ICP_BUILD_OUTPUT_DIR)/compression.a
-+ADDITIONAL_KERNEL_LIBS= common/utils/$(ICP_BUILD_OUTPUT_DIR)/*.o \
-+			common/ctrl/$(ICP_BUILD_OUTPUT_DIR)/*.o \
-+                        common/compression/$(ICP_BUILD_OUTPUT_DIR)/*.o
++ADDITIONAL_KERNEL_LIBS= common/utils/$(ICP_BUILD_OUTPUT_DIR)/utils.a \
++			common/ctrl/$(ICP_BUILD_OUTPUT_DIR)/init.a \
++                        common/compression/$(ICP_BUILD_OUTPUT_DIR)/compression.a
  ifndef ICP_DC_ONLY
 -ADDITIONAL_KERNEL_LIBS += common/crypto/sym/$(ICP_BUILD_OUTPUT_DIR)/sym.a \
 -			  common/crypto/sym/qat/$(ICP_BUILD_OUTPUT_DIR)/sym_qat.a \
 -			  common/crypto/sym/key/$(ICP_BUILD_OUTPUT_DIR)/sym_key.a
-+ADDITIONAL_KERNEL_LIBS += common/crypto/sym/$(ICP_BUILD_OUTPUT_DIR)/*.o \
-+			  common/crypto/sym/qat/$(ICP_BUILD_OUTPUT_DIR)/*.o \
-+			  common/crypto/sym/key/$(ICP_BUILD_OUTPUT_DIR)/*.o
++ADDITIONAL_KERNEL_LIBS += common/crypto/sym/$(ICP_BUILD_OUTPUT_DIR)/sym.a \
++			  common/crypto/sym/qat/$(ICP_BUILD_OUTPUT_DIR)/sym_qat.a \
++			  common/crypto/sym/key/$(ICP_BUILD_OUTPUT_DIR)/sym_key.a
  ifeq ($(ICP_OS_LEVEL), user_space)
  ADDITIONAL_KERNEL_LIBS += common/crypto/asym/pke_common/$(ICP_BUILD_OUTPUT_DIR)/pke_common.a \
  			  common/crypto/asym/diffie_hellman/$(ICP_BUILD_OUTPUT_DIR)/diffie_hellman.a \
@@ -66,16 +66,16 @@ index cc8cf2f..b8ec93c 100644
  			  common/crypto/asym/ecc/$(ICP_BUILD_OUTPUT_DIR)/elliptic_curve.a
  else
 -ADDITIONAL_KERNEL_LIBS += common/stubs/$(ICP_BUILD_OUTPUT_DIR)/lib_lac_stubs.a
-+ADDITIONAL_KERNEL_LIBS += common/stubs/$(ICP_BUILD_OUTPUT_DIR)/*.o
++ADDITIONAL_KERNEL_LIBS += common/stubs/$(ICP_BUILD_OUTPUT_DIR)/lib_lac_stubs.a
  endif
  else
  ifeq ($(ICP_OS_LEVEL), kernel_space)
 -ADDITIONAL_KERNEL_LIBS += common/stubs/$(ICP_BUILD_OUTPUT_DIR)/lib_lac_stubs.a
-+ADDITIONAL_KERNEL_LIBS += common/stubs/$(ICP_BUILD_OUTPUT_DIR)/*.o
++ADDITIONAL_KERNEL_LIBS += common/stubs/$(ICP_BUILD_OUTPUT_DIR)/lib_lac_stubs.a
  endif
  endif
 -ADDITIONAL_KERNEL_LIBS += common/qat_comms/$(ICP_BUILD_OUTPUT_DIR)/qat_comms.a
-+ADDITIONAL_KERNEL_LIBS += common/qat_comms/$(ICP_BUILD_OUTPUT_DIR)/*.o
++ADDITIONAL_KERNEL_LIBS += common/qat_comms/$(ICP_BUILD_OUTPUT_DIR)/qat_comms.a
  
  ifeq ($(ICP_OS_LEVEL), user_space)
  ifdef KPT
@@ -85,7 +85,7 @@ index cc8cf2f..b8ec93c 100644
  ifeq ($(ICP_OS_LEVEL), kernel_space)
 -    ADDITIONAL_OBJECTS =  ../build/libs/libadf_kernel.a
 -    ADDITIONAL_OBJECTS += ../build/libs/libosal.a
-+    ADDITIONAL_OBJECTS += ../build/libs/*.o
++    ADDITIONAL_OBJECTS += ../build/libs/libadf_kernel.a ../build/libs/libosal.a
  endif
  
  ifeq ($(ICP_OS_LEVEL), user_space)

@@ -12,7 +12,7 @@ PROVIDES += "virtual/qat"
 
 TARGET_CC_ARCH += "${LDFLAGS}"
 
-SRC_URI = "https://01.org/sites/default/files/downloads/qat1.7.l.4.7.0-00006.tar.gz;subdir=qat17 \
+SRC_URI = "https://downloadmirror.intel.com/30178/eng/QAT1.7.L.4.13.0-00009.tar.gz;subdir=qat17 \
            file://qat16_2.3.0-34-qat-remove-local-path-from-makefile.patch \
            file://qat16_2.6.0-65-qat-override-CC-LD-AR-only-when-it-is-not-define.patch \
            file://qat17_0.6.0-1-qat-update-KDIR-for-cross-compilation.patch \
@@ -20,7 +20,6 @@ SRC_URI = "https://01.org/sites/default/files/downloads/qat1.7.l.4.7.0-00006.tar
            file://qat17_0.9.0-4-qat-add-install-target-and-add-folder.patch \
            file://qat17_4.1.0-00022-qat-use-static-lib-for-linking.patch \
            file://qat17_4.7.0-00006-Link-driver-with-object-files.patch \
-           file://qat17_4.7.0-00006-Drop-pr_warning-definition.patch \
            file://qat17_4.7.0-00006-Switch-to-skcipher-API.patch;apply=0 \
           "
 
@@ -36,8 +35,8 @@ do_switch_to_skcipher_api () {
     patch -p1 < "${WORKDIR}/qat17_4.7.0-00006-Switch-to-skcipher-API.patch"
 }
 
-SRC_URI[md5sum] = "ac939b51cc8836c182e31e309c065002"
-SRC_URI[sha256sum] = "5c8bdc35fd7a42f212f1f87eb9e3d8584df7af56dae366debc487981e531fa5c"
+SRC_URI[md5sum] = "ab7666fca9b0ff383b927d16621abaa1"
+SRC_URI[sha256sum] = "131605e342f816856e7378076329719120d03bc2d26e7597b50c022fd77fe62e"
 
 COMPATIBLE_MACHINE = "null"
 COMPATIBLE_HOST_x86-x32 = 'null'
@@ -142,6 +141,9 @@ do_install() {
   install -m 0755 ${S}/quickassist/qat/fw/qat_d15xx.bin  ${D}${nonarch_base_libdir}/firmware
   install -m 0755 ${S}/quickassist/qat/fw/qat_d15xx_mmp.bin  ${D}${nonarch_base_libdir}/firmware
 
+  install -m 0755 ${S}/quickassist/qat/fw/qat_200xx.bin  ${D}${nonarch_base_libdir}/firmware
+  install -m 0755 ${S}/quickassist/qat/fw/qat_200xx_mmp.bin  ${D}${nonarch_base_libdir}/firmware
+
   install -m 640 ${S}/quickassist/include/*.h  ${D}${includedir}
   install -m 640 ${S}/quickassist/include/dc/*.h  ${D}${includedir}/dc/
   install -m 640 ${S}/quickassist/include/lac/*.h  ${D}${includedir}/lac/
@@ -153,7 +155,7 @@ do_install() {
   install -m 0755 ${S}/quickassist/lookaside/access_layer/src/sample_code/performance/compression/canterbury  ${D}${nonarch_base_libdir}/firmware
 
   #install qat source
-  cp ${DL_DIR}/qat1.7.l.${PV}.tar.gz ${D}${prefix}/src/qat/
+  cp ${DL_DIR}/QAT1.7.L.${PV}.tar.gz ${D}${prefix}/src/qat/
 }
 
 PACKAGES += "${PN}-app"

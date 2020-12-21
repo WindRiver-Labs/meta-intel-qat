@@ -1,4 +1,4 @@
-From 026fd275834ac4e345464c8ce2b0163d052d0262 Mon Sep 17 00:00:00 2001
+From b917833236abdb79bd3f6a683265e710d4bd39a7 Mon Sep 17 00:00:00 2001
 From: "Tan, Raymond" <raymond.tan@intel.com>
 Date: Wed, 30 May 2018 13:27:03 +0800
 Subject: [PATCH] qat-use-static-lib-for-linking-under-cpa-sample-code
@@ -10,21 +10,22 @@ hidden symbol "__ctzdi2" being referenced by shared lib (SO) during intel-core2-
 
 Signed-off-by: Tan, Raymond <raymond.tan@intel.com>
 ---
- quickassist/lookaside/access_layer/src/sample_code/performance/Makefile | 2 +-
+ .../lookaside/access_layer/src/sample_code/performance/Makefile | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/quickassist/lookaside/access_layer/src/sample_code/performance/Makefile b/quickassist/lookaside/access_layer/src/sample_code/performance/Makefile
-index 3a0fb37..5b7b3fa 100644
+index b656a372088d..f31d0b821e45 100644
 --- a/quickassist/lookaside/access_layer/src/sample_code/performance/Makefile
 +++ b/quickassist/lookaside/access_layer/src/sample_code/performance/Makefile
-@@ -209,7 +209,7 @@ ifeq ($(WITH_CMDRV),1)
-	ifeq ($(WITH_ICP_TARGET),1)
-	ADDITIONAL_OBJECTS += $(ICP_BUILD_OUTPUT)/libqae_mem.a
-	else
--	ADDITIONAL_OBJECTS += $(ICP_BUILD_OUTPUT)/libusdm_drv_s.so
-+	ADDITIONAL_OBJECTS += $(ICP_BUILD_OUTPUT)/libusdm_drv.a
-	endif
- endif
- #endif
---
-1.9.1
+@@ -319,7 +319,7 @@ ifneq ($(PREBUILD_BINS),0)
+         ifeq ($(WITH_ICP_TARGET),1)
+             ADDITIONAL_OBJECTS += $(ICP_BUILD_OUTPUT)/libqae_mem.a
+         else
+-            ADDITIONAL_OBJECTS += $(ICP_BUILD_OUTPUT)/libusdm_drv_s.so
++            ADDITIONAL_OBJECTS += $(ICP_BUILD_OUTPUT)/libusdm_drv.a
+         endif
+     endif
+     #endif
+-- 
+2.17.1
+
