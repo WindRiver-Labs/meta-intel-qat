@@ -1,0 +1,31 @@
+From 4d1a1e7a0bf5fb61affe67368856469f2a864cdf Mon Sep 17 00:00:00 2001
+From: "Tan, Raymond" <raymond.tan@intel.com>
+Date: Wed, 30 May 2018 13:27:03 +0800
+Subject: [PATCH] qat-use-static-lib-for-linking-under-cpa-sample-code
+
+Upstream-Status: Inappropriate [Configuration]
+
+Update linking target to use stalib library instead, to mitigate error on
+hidden symbol "__ctzdi2" being referenced by shared lib (SO) during intel-core2-32 build.
+
+Signed-off-by: Tan, Raymond <raymond.tan@intel.com>
+---
+ .../lookaside/access_layer/src/sample_code/performance/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/quickassist/lookaside/access_layer/src/sample_code/performance/Makefile b/quickassist/lookaside/access_layer/src/sample_code/performance/Makefile
+index c384cee93335..599cf5f478d1 100644
+--- a/quickassist/lookaside/access_layer/src/sample_code/performance/Makefile
++++ b/quickassist/lookaside/access_layer/src/sample_code/performance/Makefile
+@@ -300,7 +300,7 @@ EXTRA_CFLAGS += -DUSER_SPACE -D_GNU_SOURCE
+ EXTRA_LDFLAGS += -L$(ICP_BUILD_OUTPUT)
+ 
+ ifneq ($(PREBUILD_BINS),0)
+-    ADDITIONAL_OBJECTS += $(ICP_BUILD_OUTPUT)/libusdm_drv_s.so
++    ADDITIONAL_OBJECTS += $(ICP_BUILD_OUTPUT)/libusdm_drv.a
+     ADDITIONAL_OBJECTS += $(ICP_BUILD_OUTPUT)/libqat_s.so
+ else
+      ADDITIONAL_OBJECTS += -lusdm -lqat
+-- 
+2.17.1
+
